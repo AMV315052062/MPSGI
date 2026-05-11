@@ -1,1 +1,2270 @@
---HTML PROJECT INDEX--
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a1a2e">
+<meta name="description" content="Generación 17 — Maestría en Psicología Social de Grupos e Instituciones, UAM-Xochimilco">
+<title>Generación 17 · MPSGI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #f3efe6;
+    --bg-deep: #ebe5d6;
+    --ink: #1a1a2e;
+    --ink-soft: #3a3a52;
+    --muted: #6b6a78;
+    --line: #d9d2c1;
+    --accent: #c1432b;
+    --accent-soft: #e8c5bd;
+    --gold: #b08a3e;
+    --paper-shadow: 0 1px 0 rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+    --radius: 14px;
+    --radius-sm: 8px;
+    --f-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --f-body: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --header-h: 64px;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    font-family:var(--f-body);background:var(--bg);color:var(--ink);
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;overflow-x:hidden;min-height:100vh;
+    padding-top:var(--header-h);
+    background-image:
+      radial-gradient(rgba(26,26,46,.025) 1px, transparent 1px),
+      radial-gradient(rgba(26,26,46,.02) 1px, transparent 1px);
+    background-size: 24px 24px, 36px 36px;
+    background-position: 0 0, 12px 18px;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  img{max-width:100%;display:block}
+
+  /* HEADER */
+  .header{
+    position:fixed;top:0;left:0;right:0;height:var(--header-h);
+    background:rgba(243,239,230,.92);
+    backdrop-filter:saturate(140%) blur(10px);
+    -webkit-backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line);z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 16px;padding-top:env(safe-area-inset-top);
+    height:calc(var(--header-h) + env(safe-area-inset-top));
+  }
+  .brand{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand__logo{
+    width:38px;height:38px;border-radius:50%;background:var(--ink);
+    display:grid;place-items:center;overflow:hidden;
+    box-shadow: inset 0 0 0 2px var(--bg), 0 0 0 1px var(--ink);
+    flex:0 0 auto;
+  }
+  .brand__logo img{width:100%;height:100%;object-fit:cover}
+  .brand__text{display:flex;flex-direction:column;line-height:1.05;min-width:0}
+  .brand__gen{font-family:var(--f-display);font-weight:800;font-size:15px;letter-spacing:.01em;white-space:nowrap}
+  .brand__gen em{color:var(--accent);font-style:normal}
+  .brand__sub{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  .hamburger{width:44px;height:44px;display:grid;place-items:center;border-radius:10px;transition:background .25s var(--ease);flex:0 0 auto}
+  .hamburger:active{background:var(--bg-deep)}
+  .hamburger__bars{width:22px;height:16px;position:relative}
+  .hamburger__bars span{position:absolute;left:0;right:0;height:2px;background:var(--ink);border-radius:2px;transition:transform .35s var(--ease), opacity .25s var(--ease), top .35s var(--ease)}
+  .hamburger__bars span:nth-child(1){top:0}
+  .hamburger__bars span:nth-child(2){top:7px}
+  .hamburger__bars span:nth-child(3){top:14px}
+  .nav-open .hamburger__bars span:nth-child(1){top:7px;transform:rotate(45deg)}
+  .nav-open .hamburger__bars span:nth-child(2){opacity:0}
+  .nav-open .hamburger__bars span:nth-child(3){top:7px;transform:rotate(-45deg)}
+
+  /* DRAWER */
+  .scrim{position:fixed;inset:0;background:rgba(26,26,46,.45);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:90}
+  .nav-open .scrim{opacity:1;pointer-events:auto}
+  .drawer{
+    position:fixed;top:0;right:0;bottom:0;width:min(86vw,360px);
+    background:var(--bg);border-left:1px solid var(--line);z-index:95;
+    transform:translateX(100%);transition:transform .4s var(--ease);
+    overflow-y:auto;padding:calc(var(--header-h) + env(safe-area-inset-top) + 12px) 0 32px;
+    box-shadow:-20px 0 50px -20px rgba(26,26,46,.25);
+  }
+  .nav-open .drawer{transform:translateX(0)}
+  .drawer__header{padding:8px 20px 18px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .drawer__eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .drawer__title{font-family:var(--f-display);font-size:24px;font-weight:600;margin-top:4px;letter-spacing:-.01em}
+  .nav-list{list-style:none}
+  .nav-list > li > a, .nav-list > li > button.nav-group__toggle{
+    display:flex;align-items:center;gap:14px;width:100%;
+    padding:14px 20px;font-size:15px;font-weight:500;color:var(--ink);
+    border-left:3px solid transparent;
+    transition:background .2s var(--ease), border-color .2s var(--ease);
+    text-align:left;
+  }
+  .nav-list > li > a:active, .nav-list > li > button.nav-group__toggle:active{background:var(--bg-deep)}
+  .nav-list > li > a:hover, .nav-list > li > button.nav-group__toggle:hover{border-left-color:var(--accent)}
+  .nav-num{font-family:var(--f-display);font-style:italic;color:var(--accent);font-size:13px;font-weight:400;min-width:18px}
+  .nav-label{flex:1}
+  .nav-chev{width:10px;height:10px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(-45deg);transition:transform .3s var(--ease)}
+  .nav-group.is-open .nav-chev{transform:rotate(45deg)}
+  .nav-group__panel{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);background:var(--bg-deep)}
+  .nav-group.is-open .nav-group__panel{max-height:600px}
+  .nav-group__panel a{display:block;padding:11px 20px 11px 52px;font-size:14px;color:var(--ink-soft);border-left:3px solid transparent;transition:border-color .2s var(--ease), color .2s var(--ease)}
+  .nav-group__panel a:hover{border-left-color:var(--gold);color:var(--ink)}
+  .nav-group__panel a::before{content:"·";color:var(--gold);margin-right:10px;font-weight:700}
+
+  /* MAIN */
+  main{max-width:680px;margin:0 auto;padding:0 18px 80px}
+  .hero{padding:36px 4px 28px;border-bottom:1px solid var(--line);margin-bottom:32px;position:relative}
+  .hero::before{content:"MPSGI · UAM-X · 2026–2028";position:absolute;top:36px;right:4px;font-size:9px;letter-spacing:.22em;color:var(--muted);transform:rotate(90deg);transform-origin:right top}
+  .hero__eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px}
+  .hero__eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+  .hero__title{font-family:var(--f-display);font-size:clamp(38px, 11vw, 58px);font-weight:600;line-height:.98;letter-spacing:-.02em;margin:14px 0 12px}
+  .hero__title em{font-style:italic;font-weight:400;color:var(--accent)}
+  .hero__lede{font-size:15px;color:var(--ink-soft);max-width:48ch}
+
+  .section{padding:8px 0 36px;scroll-margin-top:calc(var(--header-h) + 12px)}
+  .section__head{margin-bottom:18px}
+  .section__num{font-family:var(--f-display);font-style:italic;color:var(--accent);font-size:13px}
+  .section__title{font-family:var(--f-display);font-size:26px;font-weight:600;letter-spacing:-.01em;line-height:1.1;margin-top:2px}
+  .section__rule{height:1px;background:var(--line);margin:14px 0 4px;position:relative}
+  .section__rule::after{content:"";position:absolute;left:0;top:0;width:48px;height:1px;background:var(--accent)}
+
+  /* LINKS */
+  .link-group{margin-top:22px}
+  .link-group__label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .link-group__label::after{content:"";flex:1;height:1px;background:linear-gradient(to right, var(--line), transparent)}
+  .link-card{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--paper-shadow);transition:transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease);position:relative;overflow:hidden}
+  .link-card:active{transform:scale(.985)}
+  .link-card:hover{border-color:var(--ink-soft)}
+  .link-card__icon{width:42px;height:42px;flex:0 0 auto;border-radius:10px;background:var(--bg-deep);display:grid;place-items:center;color:var(--ink)}
+  .link-card__icon svg{width:22px;height:22px;stroke-width:1.6}
+  .link-card[data-kind="repo"] .link-card__icon{background:#1a1a2e;color:#f3efe6}
+  .link-card[data-kind="drive"] .link-card__icon{background:#fff8e8;color:#b08a3e}
+  .link-card[data-kind="book"] .link-card__icon{background:#fbe9e4;color:#c1432b}
+  .link-card[data-kind="reddit"] .link-card__icon{background:#ffe4d6;color:#d24a1a}
+  .link-card[data-kind="fb"] .link-card__icon{background:#e6ecf7;color:#1d4ea8}
+  .link-card[data-kind="sci"] .link-card__icon{background:#1a1a2e;color:#e0c87a}
+  .link-card__body{flex:1;min-width:0}
+  .link-card__title{font-weight:600;font-size:14.5px;color:var(--ink);line-height:1.2;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .link-card__url{font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family: ui-monospace, SFMono-Regular, Menlo, monospace}
+  .link-card__arrow{color:var(--muted);font-size:18px;flex:0 0 auto;transition:transform .2s var(--ease), color .2s var(--ease)}
+  .link-card:hover .link-card__arrow{color:var(--accent);transform:translateX(3px)}
+
+  /* DOC CARDS */
+  .doc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;box-shadow:var(--paper-shadow);position:relative}
+  .doc-card__placeholder{border:1.5px dashed var(--line);border-radius:var(--radius-sm);padding:24px 16px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6}
+  .doc-card__placeholder strong{display:block;color:var(--ink);font-family:var(--f-display);font-size:16px;font-weight:600;margin-bottom:4px}
+
+  /* TRIMESTRES */
+  .trimester{background:#fff;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;box-shadow:var(--paper-shadow);scroll-margin-top:calc(var(--header-h) + 12px)}
+  .trimester__head{width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;text-align:left;transition:background .2s var(--ease)}
+  .trimester__head:active{background:var(--bg-deep)}
+  .trimester__num{font-family:var(--f-display);font-style:italic;font-size:22px;font-weight:400;color:var(--accent);min-width:38px;line-height:1}
+  .trimester__title{flex:1;font-family:var(--f-display);font-size:18px;font-weight:600;letter-spacing:-.005em}
+  .trimester__chev{width:11px;height:11px;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg);transition:transform .35s var(--ease);margin-right:4px}
+  .trimester.is-open .trimester__chev{transform:rotate(-135deg)}
+  .trimester__body{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+  .trimester.is-open .trimester__body{max-height:20000px}
+  .trimester__inner{padding:0 18px 20px;border-top:1px solid var(--line);padding-top:16px}
+
+  .block{margin-top:14px}
+  .block:first-child{margin-top:0}
+  .block__label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--ink);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .block__label::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%}
+
+  .drive-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:9px 14px;background:var(--ink);color:var(--bg);
+    border-radius:999px;font-size:12.5px;font-weight:500;
+    transition:background .2s var(--ease);
+  }
+  .drive-pill:hover{background:var(--accent)}
+  .drive-pill svg{width:14px;height:14px}
+
+  .slot{background:var(--bg-deep);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;color:var(--muted);font-style:italic}
+  .slot a{color:var(--ink);font-style:normal;font-weight:500;border-bottom:1px solid var(--gold)}
+
+  /* SEMANAS */
+  .readings{border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
+  .week{border-bottom:1px solid var(--line)}
+  .week:last-child{border-bottom:0}
+  .week__head{width:100%;display:flex;align-items:center;gap:12px;padding:11px 14px;text-align:left;background:#fff;transition:background .2s var(--ease)}
+  .week__head:active{background:var(--bg-deep)}
+  .week__tag{font-family:var(--f-display);font-style:italic;font-size:12px;color:var(--accent);min-width:30px}
+  .week__title{flex:1;font-size:13.5px;font-weight:500}
+  .week__plus{width:14px;height:14px;position:relative;flex:0 0 auto}
+  .week__plus::before, .week__plus::after{content:"";position:absolute;left:50%;top:50%;background:var(--ink);transition:transform .3s var(--ease)}
+  .week__plus::before{width:12px;height:1.5px;transform:translate(-50%,-50%)}
+  .week__plus::after{width:1.5px;height:12px;transform:translate(-50%,-50%)}
+  .week.is-open .week__plus::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+  .week__body{max-height:0;overflow:hidden;transition:max-height .35s var(--ease);background:var(--bg-deep)}
+  .week.is-open .week__body{max-height:1500px}
+  .week__inner{padding:14px 16px}
+
+  /* CONTENIDO DENTRO DE CADA SEMANA */
+  .week-topic{
+    font-family:var(--f-display);
+    font-size:15px;font-weight:600;
+    color:var(--ink);
+    margin-bottom:8px;
+    line-height:1.3;
+  }
+  .week-note{
+    font-size:13px;color:var(--ink-soft);
+    margin-bottom:12px;line-height:1.55;
+  }
+  .week-readings{
+    list-style:none;
+    margin-bottom:14px;
+    border-left:2px solid var(--gold);
+    padding-left:12px;
+  }
+  .week-readings li{
+    font-size:13px;color:var(--ink-soft);
+    line-height:1.5;
+    padding:4px 0;
+  }
+  .week-readings li::before{
+    content:"›";
+    color:var(--accent);
+    font-weight:600;
+    margin-right:6px;
+  }
+  .week-readings .author{
+    font-weight:600;color:var(--ink);
+  }
+
+  footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+  footer em{font-family:var(--f-display);font-style:italic;color:var(--accent);text-transform:none;letter-spacing:0;font-size:13px}
+
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .hero, .section{animation:rise .7s var(--ease) both}
+  .section:nth-of-type(2){animation-delay:.08s}
+  .section:nth-of-type(3){animation-delay:.14s}
+
+  body.nav-open{overflow:hidden}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+  /* Trimestre I — contenido enriquecido */
+  .week__date{
+    font-family:var(--f-display);font-style:italic;
+    font-weight:400;color:var(--muted);font-size:12.5px;
+    margin-left:4px;
+  }
+  .seminario-tag{
+    display:inline-block;
+    font-size:10px;letter-spacing:.08em;
+    color:var(--accent);font-weight:600;
+    text-transform:uppercase;
+    background:var(--accent-soft);
+    padding:1px 6px;border-radius:3px;
+    margin-right:6px;
+    vertical-align:1px;
+  }
+  .week-empty{
+    font-style:italic;color:var(--muted);
+    font-size:13px;margin-bottom:14px;
+    padding:10px 12px;
+    background:#fff;border-radius:6px;
+    border:1px dashed var(--line);
+  }
+  .modular-info{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius-sm);
+    padding:16px 18px;
+  }
+  .modular-info__title{
+    font-family:var(--f-display);
+    font-size:16px;font-weight:600;
+    color:var(--ink);
+    line-height:1.3;
+    margin-bottom:4px;
+  }
+  .modular-info__meta{
+    font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+    margin-bottom:14px;
+  }
+  .modular-info__desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .modular-info__desc strong{
+    color:var(--ink);
+  }
+  .modular-info__desc a{
+    color:var(--accent);
+    border-bottom:1px solid var(--accent-soft);
+  }
+  .modular-seminars{
+    list-style:none;
+    margin:8px 0 14px;
+    padding-left:0;
+  }
+  .modular-seminars li{
+    padding:6px 0 6px 14px;
+    border-left:2px solid var(--gold);
+    margin-bottom:6px;
+    font-size:13px;
+  }
+
+</style>
+</head>
+<body>
+
+<header class="header" role="banner">
+  <div class="brand">
+    <div class="brand__logo">
+      <img src="logo.png" alt="Logo MPSGI" onerror="this.style.display='none';this.parentNode.style.background='var(--accent)';this.parentNode.insertAdjacentHTML('beforeend','<span style=&quot;color:#f3efe6;font-family:var(--f-display);font-style:italic;font-weight:600;font-size:16px&quot;>17</span>');">
+    </div>
+    <div class="brand__text">
+      <span class="brand__gen">Generación <em>17</em></span>
+      <span class="brand__sub">MPSGI · UAM-X</span>
+    </div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-controls="drawer" aria-expanded="false">
+    <span class="hamburger__bars"><span></span><span></span><span></span></span>
+  </button>
+</header>
+
+<div class="scrim" id="scrim"></div>
+
+<nav class="drawer" id="drawer" aria-label="Navegación principal">
+  <div class="drawer__header">
+    <div class="drawer__eyebrow">Índice</div>
+    <div class="drawer__title">Navegación</div>
+  </div>
+  <ul class="nav-list">
+    <li><a href="#links" data-nav><span class="nav-num">01</span><span class="nav-label">Links de interés</span></a></li>
+    <li><a href="#calendario" data-nav><span class="nav-num">02</span><span class="nav-label">Calendario UAM</span></a></li>
+    <li><a href="#programa-general" data-nav><span class="nav-num">03</span><span class="nav-label">Programa general de estudios</span></a></li>
+    <li><a href="#programa-uea" data-nav><span class="nav-num">04</span><span class="nav-label">Programa general por UEA</span></a></li>
+    <li class="nav-group" id="nav-trimestres">
+      <button class="nav-group__toggle" aria-expanded="false">
+        <span class="nav-num">05</span>
+        <span class="nav-label">Trimestres</span>
+        <span class="nav-chev"></span>
+      </button>
+      <div class="nav-group__panel">
+        <a href="#tri-1" data-nav>Trimestre I</a>
+        <a href="#tri-2" data-nav>Trimestre II</a>
+        <a href="#tri-3" data-nav>Trimestre III</a>
+        <a href="#tri-4" data-nav>Trimestre IV</a>
+        <a href="#tri-5" data-nav>Trimestre V</a>
+        <a href="#tri-6" data-nav>Trimestre VI</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <div class="hero__eyebrow">Bitácora de la maestría</div>
+    <h1 class="hero__title">Generación <em>diecisiete</em></h1>
+    <p class="hero__lede">Maestría en Psicología Social de Grupos e Instituciones. Universidad Autónoma Metropolitana, Xochimilco. Espacio de trabajo, archivo y consulta.</p>
+  </section>
+
+  <!-- 1. LINKS -->
+  <section class="section" id="links">
+    <header class="section__head">
+      <div class="section__num">01</div>
+      <h2 class="section__title">Links de interés</h2>
+      <div class="section__rule"></div>
+    </header>
+
+    <div class="link-group">
+      <div class="link-group__label">Biblioteca digital de la maestría</div>
+      <a class="link-card" href="https://repositorio.xoc.uam.mx/jspui/handle/123456789/368" target="_blank" rel="noopener" data-kind="repo">
+        <span class="link-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg></span>
+        <div class="link-card__body"><div class="link-card__title">Repositorio UAM-X</div><div class="link-card__url">repositorio.xoc.uam.mx/…/368</div></div>
+        <span class="link-card__arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://drive.google.com/drive/folders/1bFjskRao5q4k9ffWPU78tHqwOblboAv0" target="_blank" rel="noopener" data-kind="drive">
+        <span class="link-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10v6m-3-3h6"/><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+        <div class="link-card__body"><div class="link-card__title">Carpeta Drive · Biblioteca</div><div class="link-card__url">drive.google.com/…/1bFjsk…</div></div>
+        <span class="link-card__arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group__label">Libros pirata</div>
+      <a class="link-card" href="https://fr.1lib.sk/" target="_blank" rel="noopener" data-kind="book">
+        <span class="link-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
+        <div class="link-card__body"><div class="link-card__title">Z-Library (1lib.sk)</div><div class="link-card__url">fr.1lib.sk</div></div>
+        <span class="link-card__arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://libgen.li/" target="_blank" rel="noopener" data-kind="book">
+        <span class="link-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
+        <div class="link-card__body"><div class="link-card__title">Library Genesis</div><div class="link-card__url">libgen.li</div></div>
+        <span class="link-card__arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://sci-hub.se/" target="_blank" rel="noopener" data-kind="sci">
+        <span class="link-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <div class="link-card__body"><div class="link-card__title">Sci-Hub</div><div class="link-card__url">sci-hub.se</div></div>
+        <span class="link-card__arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group__label">Subreddits</div>
+      <a class="link-card" href="https://www.reddit.com/r/libgen/" target="_blank" rel="noopener" data-kind="reddit">
+        <span class="link-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><circle cx="9" cy="13" r="1.2" fill="currentColor"/><circle cx="15" cy="13" r="1.2" fill="currentColor"/><path d="M9 16c1 .8 2 1.2 3 1.2s2-.4 3-1.2"/><circle cx="19" cy="6" r="1.5"/><path d="M12 5l6 1"/></svg></span>
+        <div class="link-card__body"><div class="link-card__title">r/libgen</div><div class="link-card__url">reddit.com/r/libgen</div></div>
+        <span class="link-card__arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://www.reddit.com/r/zlibrary/" target="_blank" rel="noopener" data-kind="reddit">
+        <span class="link-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><circle cx="9" cy="13" r="1.2" fill="currentColor"/><circle cx="15" cy="13" r="1.2" fill="currentColor"/><path d="M9 16c1 .8 2 1.2 3 1.2s2-.4 3-1.2"/><circle cx="19" cy="6" r="1.5"/><path d="M12 5l6 1"/></svg></span>
+        <div class="link-card__body"><div class="link-card__title">r/zlibrary</div><div class="link-card__url">reddit.com/r/zlibrary</div></div>
+        <span class="link-card__arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group__label">Facebook · Maestría</div>
+      <a class="link-card" href="https://www.facebook.com/MaestriaPsicologiaSocialGruposInstituciones" target="_blank" rel="noopener" data-kind="fb">
+        <span class="link-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2a4 4 0 0 0-4 4v3H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h2z"/></svg></span>
+        <div class="link-card__body"><div class="link-card__title">MPSGI · Página oficial</div><div class="link-card__url">facebook.com/MaestriaPsico…</div></div>
+        <span class="link-card__arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 2. CALENDARIO -->
+  <section class="section" id="calendario">
+    <header class="section__head">
+      <div class="section__num">02</div>
+      <h2 class="section__title">Calendario UAM</h2>
+      <div class="section__rule"></div>
+    </header>
+    <div class="doc-card">
+      <iframe src="calendario_sept.pdf" style="width:100%;height:500px;border:0;border-radius:8px"></iframe>
+    </div>
+  </section>
+
+  <!-- 3. PROGRAMA GENERAL -->
+  <section class="section" id="programa-general">
+    <header class="section__head">
+      <div class="section__num">03</div>
+      <h2 class="section__title">Programa general de estudios</h2>
+      <div class="section__rule"></div>
+    </header>
+    <div class="doc-card">
+      <iframe src="PLAN_GENERAL.pdf" style="width:100%;height:500px;border:0;border-radius:8px"></iframe>
+    </div>
+  </section>
+
+  <!-- 4. PROGRAMA POR UEA -->
+  <section class="section" id="programa-uea">
+    <header class="section__head">
+      <div class="section__num">04</div>
+      <h2 class="section__title">Programa general por UEA</h2>
+      <div class="section__rule"></div>
+    </header>
+    <div class="doc-card">
+      <a href="https://drive.google.com/drive/folders/1MuHBhdvVImKO6omjAPL26Q18R28VKYOq?usp=drive_link" target="_blank" rel="noopener" class="drive-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        Programa de UEA's
+      </a>
+    </div>
+  </section>
+
+  <!-- 5. TRIMESTRES -->
+  <section class="section" id="trimestres">
+    <header class="section__head">
+      <div class="section__num">05</div>
+      <h2 class="section__title">Trimestres</h2>
+      <div class="section__rule"></div>
+    </header>
+
+<!-- 
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  CÓMO EDITAR CADA SEMANA                                     ║
+  ║  ──────────────────────────────────────────────────────────  ║
+  ║  Dentro de cada <div class="week__inner"> hay 3 campos:      ║
+  ║                                                              ║
+  ║  1. <div class="week-topic">     →  título o tema            ║
+  ║  2. <div class="week-note">      →  texto / nota libre       ║
+  ║  3. <ul class="week-readings">   →  lista de lecturas        ║
+  ║  4. <a class="drive-pill" href="...">  →  link a Drive       ║
+  ║                                                              ║
+  ║  Solo cambia el texto entre las etiquetas. NO toques los     ║
+  ║  nombres de las clases (class="...").                        ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+
+
+    <article class="trimester" id="tri-1">
+      <button class="trimester__head" aria-expanded="false">
+        <span class="trimester__num">I</span>
+        <span class="trimester__title">Trimestre I</span>
+        <span class="trimester__chev"></span>
+      </button>
+      <div class="trimester__body">
+        <div class="trimester__inner">
+          <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Carpeta del trimestre
+          </a>
+
+          <div class="block">
+            <div class="block__label">Programa modular</div>
+            
+            <div class="modular-info">
+              <div class="modular-info__title">Módulo I — La Psicología Social en el campo de las Ciencias Sociales</div>
+              <div class="modular-info__meta">Trimestre 26-Primavera · 6 de mayo al 24 de julio de 2026</div>
+              <div class="modular-info__desc">
+                <strong>Problema-eje:</strong> Historización y recorte del campo.
+                <br><br>
+                <strong>Objetivo general:</strong> Desarrollar un pensamiento histórico y polémico sobre el recorte del campo de estudio propuesto en la Maestría.
+                <br><br>
+                <strong>Seminarios:</strong>
+                <ul class="modular-seminars">
+                  <li><strong>Seminario Teórico Metodológico</strong> — Dr. Roberto Manero Brito. Jueves 12:00–14:30, Aula 14.</li>
+                  <li><strong>Aproximación al Campo</strong> — Dra. Verónica Gil Montes y Mtra. Myrna Salazar. Martes 9:00–11:30, Aula 14.</li>
+                  <li><strong>Dispositivos Grupales de Intervención</strong> — Dra. Valeria Falleti y Dr. Alejandro Medina. Miércoles 9:00–11:30, Aula 14.</li>
+                  <li><strong>TACO · Taller de Asesoría Colectiva</strong> — Dr. Fernando García Masip (Aula 11) / Dra. Edith Flores (Aula 10), martes 12:00–14:30. Dra. Guadalupe Hernández Ortiz (Aula 9), jueves 12:00–14:30.</li>
+                </ul>
+                <strong>Evaluación:</strong> Asistencia mínima 80%. Entrega del proyecto de investigación el viernes 17 de julio de 2026 a <a href="mailto:mpsgi@correo.xoc.uam.mx">mpsgi@correo.xoc.uam.mx</a>.
+              </div>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="block__label">Lecturas</div>
+            <div class="readings">
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">01</span>
+            <span class="week__title">Semana 1 · <span class="week__date">6–8 mayo 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Presentación del módulo</div>
+              <div class="week-note">Presentación modular (6 mayo, 10:00 hrs, Sala de Usos Múltiples). Sin lecturas asignadas.</div>
+              <div class="week-empty">Sin lecturas asignadas.</div>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">02</span>
+            <span class="week__title">Semana 2 · <span class="week__date">12–15 mayo 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Inicio de seminarios · Introducción a la Psicología Social</div>
+              <div class="week-note">Arrancan los tres seminarios. Primeras lecturas fundacionales.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Baz, M. y Perrés, J.</span> — Psicología Social y producción de subjetividad.</li>
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Casanova, M. P.</span> — Vicisitudes de un proyecto. <em>Perspectivas docentes</em> No. 9, UJAT, Villahermosa, sept-dic 1992.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Soto, A. y Reygadas, R.</span> — De problemas de investigación, procesos metodológicos y configuración de experiencias. En <em>Pensamiento y praxis en la investigación social</em>, UAM-X, 2020, pp. 97-116.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Guajardo, A. C.</span> — <em>Trabajo Grupal</em>. UAM-X, 1994.</li>
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Fernández, A. M.</span> — <em>El campo grupal. Notas para una genealogía</em>. Capítulos 1 y 2. Nueva Visión, 2002.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">03</span>
+            <span class="week__title">Semana 3 · <span class="week__date">19–22 mayo 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Aproximación cualitativa y dispositivo grupal</div>
+              <div class="week-note">Diseño cualitativo, etnografía reflexiva y construcción del dispositivo grupal.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Janesick, V.</span> — La danza del diseño de la investigación cualitativa: metáfora, metodolatría y significado. En <em>Por los rincones. Antología de métodos cualitativos en la investigación social</em>, El Colegio de Sonora, 2000, pp. 227-251.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Guber, R.</span> — El trabajo de campo: un marco reflexivo para la interpretación de las técnicas, y El investigador en el campo. En <em>La etnografía: método, campo y reflexividad</em>, Siglo XXI, 2011, pp. 39-51 y 111-126.</li>
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Del Cueto, A. M. y Fernández, A. M.</span> — El dispositivo grupal. En <em>Lo Grupal, Búsqueda de Ayllu</em>, 2000.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">04</span>
+            <span class="week__title">Semana 4 · <span class="week__date">26–29 mayo 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Psicoanálisis, Marxismo y dimensiones de la grupalidad</div>
+              <div class="week-note">Fundamentos de la Psicología Social como disciplina bisagra. Castoriadis y la noción de institución.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Pichon-Rivière, E.</span> — Prólogo. En <em>El proceso grupal. Del psicoanálisis a la psicología social (1)</em>, Nueva Visión, Buenos Aires, 1985, pp. 7-12.</li>
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Bauleo, A.</span> — Psicología Social y grupo. En <em>Contrainstitución y grupos</em>, Fundamentos, Madrid, 1977, pp. 29-73.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Castoriadis, C.</span> — La institución histórico-social: el individuo y la cosa. En <em>La institución imaginaria de la sociedad</em>, Tusquets, 2010, pp. 429-460.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Gil, V. y Manero, R.</span> — Algunos referentes teóricos sobre el concepto de institución. <em>Área 3</em>, (16), 2012, pp. 1-18.</li>
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Baz, M. y Téllez, M.</span> — Dimensiones de la grupalidad. Convergencias teóricas. <em>Anuario de investigación 2006</em>, UAM-X, pp. 684-699.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">05</span>
+            <span class="week__title">Semana 5 · <span class="week__date">2–5 junio 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Construcción del dispositivo y lógicas colectivas</div>
+              <div class="week-note">La implicación del/la investigador/a, la intervención institucional y el dispositivo como experiencia de la diversidad.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Lourau, R.</span> — La inquietante intimidad del extra-texto. En <em>El diario de investigación. Materiales para una teoría de la implicación</em>, Universidad de Guadalajara, 1989, pp. 13-29.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Ardoino, J.</span> — La intervención: ¿imaginario del cambio o cambio del imaginario? En <em>La intervención institucional</em>, Folios Ediciones, 1980, pp. 13-42.</li>
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Fernández, A. M.</span> — <em>Las lógicas colectivas. Imaginarios, cuerpos y multiplicidades</em>. Segunda parte, Cap. 1: "El dispositivo: la experiencia de la diversidad". Biblós, 2007, pp. 133-158.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">06</span>
+            <span class="week__title">Semana 6 · <span class="week__date">9–12 junio 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Procesos imaginarios · Experiencia · Grupos operativos</div>
+              <div class="week-note">Análisis institucional, lo imaginario social y la historia de los grupos operativos.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Manero, R. et al.</span> — La Psicología Social de Intervención. <em>Perspectivas docentes</em> No. 18, UJAT, Villahermosa, ene-abril 1996.</li>
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Lourau, R.</span> — Análisis institucional y cuestión política. En <em>Análisis institucional y socioanálisis</em>, Nueva Imagen, México, 1977, pp. 9-47.</li>
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Castoriadis, C.</span> — III. La institución y lo imaginario: primera aproximación. En <em>La institución imaginaria de la sociedad 1</em>, Tusquets, Barcelona, 1983, pp. 197-285.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Messina, G. C.</span> — Investigación y experiencia. <em>Praxis y saber</em>, 2(4), 2011, pp. 61-75.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Gil, V. y Nava, D.</span> — Aprender de las experiencias y elaborar memoria colectiva: reflexiones sobre algunos elementos del proceso de intervención. En <em>Trazos y contextos. Épocas trastocadas: búsqueda de sentidos</em>, UAM-X, 2021, pp. 153-174.</li>
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Pichón-Rivière, E.</span> — Historia de la técnica de grupos operativos. En <em>Ilusión Grupal 4</em>, Universidad Autónoma del Estado de Morelia, 1990.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">07</span>
+            <span class="week__title">Semana 7 · <span class="week__date">16–19 junio 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Alteridad, género y coordinación grupal</div>
+              <div class="week-note">Perspectivas decoloniales y de género en la investigación social. Dos formas de comprender al coordinador grupal.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Cumes, A.</span> — La presencia subalterna en la investigación social: reflexiones a partir de una experiencia de trabajo. En <em>Prácticas otras de conocimiento(s): Entre crisis, entre guerras, Tomo I</em>, CLACSO, 2018, pp. 135-158.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Macleod, M.</span> — Género, análisis situado y epistemologías indígenas: descentrar los términos del debate. En <em>Prácticas otras de conocimiento(s): Entre crisis, entre guerras, Tomo II</em>, CLACSO, 2018, pp. 32-58.</li>
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Pavlovsky, L. y Fridlewsky, E.</span> — Sobre dos formas de comprender al Coordinador Grupal. En <em>Lo Grupal</em>, Ediciones Búsqueda, 1984.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">08</span>
+            <span class="week__title">Semana 8 · <span class="week__date">23–26 junio 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Subjetividad, epistemología y ética de la implicación</div>
+              <div class="week-note">Bloque epistemológico-metodológico fuerte. Multirreferencialidad, campo grupal y dimensión ético-política.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Ardoino, J.</span> — Lo multirreferencial en torno a los problemas de investigación.</li>
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Fernández, A. M.</span> — Notas para la constitución de un campo de problemas de la subjetividad. En <em>Instituciones estalladas</em>, EUDEBA, Buenos Aires, 1999, pp. 265-289.</li>
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Fernández, A. M.</span> — <em>El campo grupal. Notas para una genealogía</em>. Introducción, capítulo II y capítulo VII. Nueva Visión, Buenos Aires, 1989.</li>
+                <li><span class="seminario-tag">[Teórico Metodológico]</span> <span class="author">Manero, R.</span> — Cuestiones epistémicas derivadas del análisis de las implicaciones en la Psicología Social. <em>Enseñanza e Investigación en Psicología</em>, Vol. 2, Núm. 2, 2020, pp. 297-313.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Manero, R.</span> — Los psicólogos y la implicación. En <em>Las Profesiones en México Núm. 6 Psicología</em>, UAM-X, 1989, pp. 42-50.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Gondra, J. M.</span> — La Ética como Praxis Transformadora en la Psicología de la Liberación de Ignacio Martín-Baró. <em>Revista de Historia de la Psicología</em>, 38(1), 2017, pp. 2-10.</li>
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Fernández, A. M. et al.</span> — La indagación de las implicaciones. <em>Sujeto, Subjetividad y Cultura</em>, (7), 2014, pp. 45-61.</li>
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Fernández, A. M.</span> — <em>Las lógicas colectivas. Imaginarios, cuerpos y multiplicidades</em>. Segunda parte, Capítulos 4 y 5. Biblós, 2007.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">09</span>
+            <span class="week__title">Semana 9 · <span class="week__date">30 jun – 3 julio 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Reflexión final · La entrevista grupal</div>
+              <div class="week-note">Inicio de la reflexión final escrita. Discusión sobre la entrevista grupal como instrumento de investigación-intervención.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Aproximación al Campo]</span> <span class="author">Reflexión final</span> — Las y los estudiantes presentarán una reflexión en torno a cómo empezaron y qué han ido pensando de su aproximación al campo. Entrega escrita: 2-3 cuartillas, formato APA.</li>
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Vilar, E.</span> — <em>La entrevista grupal. Instrumento para la investigación/intervención en psicología social</em>. Capítulos II y III. UAM-X, 2019.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">10</span>
+            <span class="week__title">Semana 10 · <span class="week__date">7–10 julio 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Terapia institucional · Continuación de la reflexión</div>
+              <div class="week-note">Lectura clave de Guattari sobre la terapia institucional.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Guattari, F.</span> — Introducción a la terapia institucional. En <em>Psicoanálisis y transversalidad</em>, Siglo XXI, 1976.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">11</span>
+            <span class="week__title">Semana 11 · <span class="week__date">13–17 julio 2026</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Cierre del trimestre · Entrega del avance</div>
+              <div class="week-note"><strong style="color:var(--accent)">Entrega del avance trimestral: viernes 17 de julio de 2026.</strong> Retroalimentación y cierre en Dispositivos Grupales.</div>
+              <ul class="week-readings">
+                <li><span class="seminario-tag">[Dispositivos Grupales]</span> <span class="author">Cierre</span> — Retroalimentación y cierre del curso.</li>
+                <li><span class="seminario-tag">[Entrega final]</span> <span class="author">Proyecto de investigación</span> — Tránsito del anteproyecto al proyecto. Incluir: ubicación de la temática y pertinencia, problematización y preguntas, propuesta metodológica, campo de estudio/intervención, cronograma. Portada con universidad, generación, módulo, título, nombre y resumen (5 renglones máx). Enviar copia digital a mpsgi@correo.xoc.uam.mx.</li>
+              </ul>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">12</span>
+            <span class="week__title">Semana 12 · <span class="week__date">Receso intertrimestral</span></span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Receso</div>
+              <div class="week-note">Periodo de receso entre el Trimestre I y el Trimestre II.</div>
+              <div class="week-empty">Sin lecturas asignadas.</div>
+              <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="trimester" id="tri-2">
+      <button class="trimester__head" aria-expanded="false">
+        <span class="trimester__num">II</span>
+        <span class="trimester__title">Trimestre II</span>
+        <span class="trimester__chev"></span>
+      </button>
+      <div class="trimester__body">
+        <div class="trimester__inner">
+          <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Carpeta del trimestre
+          </a>
+
+          <div class="block">
+            <div class="block__label">Programa modular</div>
+            <div class="slot">Espacio para el programa modular del trimestre. Reemplaza este texto o agrega un <a href="#">enlace</a>.</div>
+          </div>
+
+          <div class="block">
+            <div class="block__label">Lecturas</div>
+            <div class="readings">
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">01</span>
+            <span class="week__title">Semana 1</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 1</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">02</span>
+            <span class="week__title">Semana 2</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 2</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">03</span>
+            <span class="week__title">Semana 3</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 3</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">04</span>
+            <span class="week__title">Semana 4</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 4</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">05</span>
+            <span class="week__title">Semana 5</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 5</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">06</span>
+            <span class="week__title">Semana 6</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 6</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">07</span>
+            <span class="week__title">Semana 7</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 7</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">08</span>
+            <span class="week__title">Semana 8</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 8</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">09</span>
+            <span class="week__title">Semana 9</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 9</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">10</span>
+            <span class="week__title">Semana 10</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 10</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">11</span>
+            <span class="week__title">Semana 11</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 11</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">12</span>
+            <span class="week__title">Semana 12</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 12</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="trimester" id="tri-3">
+      <button class="trimester__head" aria-expanded="false">
+        <span class="trimester__num">III</span>
+        <span class="trimester__title">Trimestre III</span>
+        <span class="trimester__chev"></span>
+      </button>
+      <div class="trimester__body">
+        <div class="trimester__inner">
+          <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Carpeta del trimestre
+          </a>
+
+          <div class="block">
+            <div class="block__label">Programa modular</div>
+            <div class="slot">Espacio para el programa modular del trimestre. Reemplaza este texto o agrega un <a href="#">enlace</a>.</div>
+          </div>
+
+          <div class="block">
+            <div class="block__label">Lecturas</div>
+            <div class="readings">
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">01</span>
+            <span class="week__title">Semana 1</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 1</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">02</span>
+            <span class="week__title">Semana 2</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 2</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">03</span>
+            <span class="week__title">Semana 3</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 3</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">04</span>
+            <span class="week__title">Semana 4</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 4</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">05</span>
+            <span class="week__title">Semana 5</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 5</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">06</span>
+            <span class="week__title">Semana 6</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 6</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">07</span>
+            <span class="week__title">Semana 7</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 7</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">08</span>
+            <span class="week__title">Semana 8</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 8</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">09</span>
+            <span class="week__title">Semana 9</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 9</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">10</span>
+            <span class="week__title">Semana 10</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 10</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">11</span>
+            <span class="week__title">Semana 11</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 11</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">12</span>
+            <span class="week__title">Semana 12</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 12</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="trimester" id="tri-4">
+      <button class="trimester__head" aria-expanded="false">
+        <span class="trimester__num">IV</span>
+        <span class="trimester__title">Trimestre IV</span>
+        <span class="trimester__chev"></span>
+      </button>
+      <div class="trimester__body">
+        <div class="trimester__inner">
+          <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Carpeta del trimestre
+          </a>
+
+          <div class="block">
+            <div class="block__label">Programa modular</div>
+            <div class="slot">Espacio para el programa modular del trimestre. Reemplaza este texto o agrega un <a href="#">enlace</a>.</div>
+          </div>
+
+          <div class="block">
+            <div class="block__label">Lecturas</div>
+            <div class="readings">
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">01</span>
+            <span class="week__title">Semana 1</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 1</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">02</span>
+            <span class="week__title">Semana 2</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 2</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">03</span>
+            <span class="week__title">Semana 3</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 3</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">04</span>
+            <span class="week__title">Semana 4</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 4</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">05</span>
+            <span class="week__title">Semana 5</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 5</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">06</span>
+            <span class="week__title">Semana 6</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 6</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">07</span>
+            <span class="week__title">Semana 7</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 7</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">08</span>
+            <span class="week__title">Semana 8</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 8</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">09</span>
+            <span class="week__title">Semana 9</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 9</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">10</span>
+            <span class="week__title">Semana 10</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 10</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">11</span>
+            <span class="week__title">Semana 11</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 11</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">12</span>
+            <span class="week__title">Semana 12</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 12</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="trimester" id="tri-5">
+      <button class="trimester__head" aria-expanded="false">
+        <span class="trimester__num">V</span>
+        <span class="trimester__title">Trimestre V</span>
+        <span class="trimester__chev"></span>
+      </button>
+      <div class="trimester__body">
+        <div class="trimester__inner">
+          <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Carpeta del trimestre
+          </a>
+
+          <div class="block">
+            <div class="block__label">Programa modular</div>
+            <div class="slot">Espacio para el programa modular del trimestre. Reemplaza este texto o agrega un <a href="#">enlace</a>.</div>
+          </div>
+
+          <div class="block">
+            <div class="block__label">Lecturas</div>
+            <div class="readings">
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">01</span>
+            <span class="week__title">Semana 1</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 1</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">02</span>
+            <span class="week__title">Semana 2</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 2</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">03</span>
+            <span class="week__title">Semana 3</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 3</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">04</span>
+            <span class="week__title">Semana 4</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 4</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">05</span>
+            <span class="week__title">Semana 5</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 5</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">06</span>
+            <span class="week__title">Semana 6</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 6</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">07</span>
+            <span class="week__title">Semana 7</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 7</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">08</span>
+            <span class="week__title">Semana 8</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 8</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">09</span>
+            <span class="week__title">Semana 9</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 9</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">10</span>
+            <span class="week__title">Semana 10</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 10</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">11</span>
+            <span class="week__title">Semana 11</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 11</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">12</span>
+            <span class="week__title">Semana 12</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 12</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="trimester" id="tri-6">
+      <button class="trimester__head" aria-expanded="false">
+        <span class="trimester__num">VI</span>
+        <span class="trimester__title">Trimestre VI</span>
+        <span class="trimester__chev"></span>
+      </button>
+      <div class="trimester__body">
+        <div class="trimester__inner">
+          <a class="drive-pill" href="https://drive.google.com/drive/folders/1XrtljYYJqhyBOKkGGxSs_DXvorCBr20N?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Carpeta del trimestre
+          </a>
+
+          <div class="block">
+            <div class="block__label">Programa modular</div>
+            <div class="slot">Espacio para el programa modular del trimestre. Reemplaza este texto o agrega un <a href="#">enlace</a>.</div>
+          </div>
+
+          <div class="block">
+            <div class="block__label">Lecturas</div>
+            <div class="readings">
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">01</span>
+            <span class="week__title">Semana 1</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 1</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">02</span>
+            <span class="week__title">Semana 2</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 2</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">03</span>
+            <span class="week__title">Semana 3</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 3</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">04</span>
+            <span class="week__title">Semana 4</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 4</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">05</span>
+            <span class="week__title">Semana 5</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 5</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">06</span>
+            <span class="week__title">Semana 6</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 6</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">07</span>
+            <span class="week__title">Semana 7</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 7</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">08</span>
+            <span class="week__title">Semana 8</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 8</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">09</span>
+            <span class="week__title">Semana 9</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 9</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">10</span>
+            <span class="week__title">Semana 10</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 10</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">11</span>
+            <span class="week__title">Semana 11</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 11</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="week">
+          <button class="week__head" aria-expanded="false">
+            <span class="week__tag">12</span>
+            <span class="week__title">Semana 12</span>
+            <span class="week__plus"></span>
+          </button>
+          <div class="week__body">
+            <div class="week__inner">
+              <div class="week-topic">Tema de la semana 12</div>
+              <div class="week-note">Espacio para escribir notas, contexto o consigna de la sesión.</div>
+              <ul class="week-readings">
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+                <li><span class="author">Autor:</span> Título de la lectura.</li>
+              </ul>
+              <a class="drive-pill" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Lecturas en Drive
+              </a>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<script>
+  /* ============ Drawer ============ */
+  const body = document.body;
+  const ham = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  const scrim = document.getElementById('scrim');
+  function setNav(open){
+    body.classList.toggle('nav-open', open);
+    ham.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  ham.addEventListener('click', ()=> setNav(!body.classList.contains('nav-open')));
+  scrim.addEventListener('click', ()=> setNav(false));
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') setNav(false); });
+  document.querySelectorAll('[data-nav]').forEach(a=>{
+    a.addEventListener('click', ()=> setTimeout(()=> setNav(false), 80));
+  });
+  const navGroup = document.getElementById('nav-trimestres');
+  navGroup.querySelector('.nav-group__toggle').addEventListener('click', function(){
+    const open = navGroup.classList.toggle('is-open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  /* ============ Acordeón trimestres ============ */
+  document.addEventListener('click', e=>{
+    const th = e.target.closest('.trimester__head');
+    if(th){
+      const tri = th.closest('.trimester');
+      const open = tri.classList.toggle('is-open');
+      th.setAttribute('aria-expanded', open ? 'true':'false');
+      return;
+    }
+    const wh = e.target.closest('.week__head');
+    if(wh){
+      const week = wh.closest('.week');
+      const open = week.classList.toggle('is-open');
+      wh.setAttribute('aria-expanded', open ? 'true':'false');
+    }
+  });
+
+  /* ============ Abrir trimestre al navegar por hash ============ */
+  function openFromHash(){
+    const h = location.hash;
+    if(!h) return;
+    const el = document.querySelector(h);
+    if(el && el.classList.contains('trimester')){
+      el.classList.add('is-open');
+      el.querySelector('.trimester__head').setAttribute('aria-expanded','true');
+    }
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+</script>
+
+<footer style="max-width:680px;margin:0 auto;padding:0 18px 40px">
+  <div><em>Generación 17 · MPSGI</em></div>
+  <div style="margin-top:6px">UAM-Xochimilco · 2026–2028</div>
+</footer>
+
+</body>
+</html>
